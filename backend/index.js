@@ -3,8 +3,8 @@ import cors from "cors";
 import router from "./routes/router.js";
 import path, {dirname} from 'path';
 import {db} from './models/data.js';
-
-
+import { v4 as uuidv4 } from 'uuid';
+uuidv4(); // ⇨ '9b1deb4d-3b7d-4bad-9bdd-2b0d7b3dcb6d'
 
 const myFilePath = path.resolve(dirname('./'), "views", "index.html");
 
@@ -17,28 +17,6 @@ app.get('/', (req, res)=> {
 });
 app.post('/',(req, res) => {
   const q = "INSERT INTO user(`name`, `email`,`password`) VALUES (?)";
-  const values = [
-    req.body.title,
-    req.body.desc,
-    req.body.price,
-    req.body.cover,
-  ];
-
-  db.query(q, [values], (err, data) => {
-    if (err) return res.send(err);
-    return res.json(data);
-  });
-};
-
-export  const deleteExpenses = (req, res) => {
-  const expenseId = req.params.id;
-  const q = " DELETE FROM books WHERE id = ? ";
-
-  db.query(q, [expenseId], (err, data) => {
-    if (err) return res.send(err);
-    return res.json(data);
-  });
-};
 
   const values = [
     req.body.name,
