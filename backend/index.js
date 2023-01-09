@@ -15,6 +15,42 @@ app.use(express.json());
 app.get('/', (req, res)=> {
   res.sendFile(myFilePath);
 });
+app.post('/',(req, res) => {
+  const q = "INSERT INTO user(`name`, `email`,`password`) VALUES (?)";
+  const values = [
+    req.body.title,
+    req.body.desc,
+    req.body.price,
+    req.body.cover,
+  ];
+
+  db.query(q, [values], (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  });
+};
+
+export  const deleteExpenses = (req, res) => {
+  const expenseId = req.params.id;
+  const q = " DELETE FROM books WHERE id = ? ";
+
+  db.query(q, [expenseId], (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  });
+};
+
+  const values = [
+    req.body.name,
+    req.body.email,
+    req.body.password
+  ];
+
+  db.query(q, [values], (err, data) => {
+    if (err) return res.send(err);
+    return res.json(data);
+  });
+});
 
 
 app.use('/expenses',router);
