@@ -16,20 +16,6 @@ app.get('/', (req, res)=> {
   res.sendFile(myFilePath);
 });
 
-app.post('/',(req, res) => {
-  const q = "INSERT INTO user(`name`, `email`,`password`) VALUES (?)";
-
-  const values = [
-    req.body.name,
-    req.body.email,
-    req.body.password
-  ];
-
-  db.query(q, [values], (err, data) => {
-    if (err) return res.send(err);
-    return res.json(data);
-  });
-});
 
 app.use('/expenses',router);
 
