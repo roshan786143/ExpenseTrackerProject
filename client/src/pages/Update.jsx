@@ -88,6 +88,58 @@ const Expenses = () => {
   }, []);
 
   console.log(expenses);
+  const handleClick = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("http://localhost:8800/expenses", expense);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+      setError(true)
+    }
+  };
+
+  return (
+    <div className="form">
+      <h1>Add New Expense</h1>
+      <input
+        type="text"
+        placeholder="Expense For :"
+        name="title"
+        onChange={handleChange}
+      />
+      {/* <textarea
+        rows={5}
+        type="text"
+        placeholder="Expense desc"
+        name="desc"
+        onChange={handleChange}
+      /> */}
+      <input
+        type="text"
+        placeholder="Expense description :"
+        name="desc"
+        onChange={handleChange}
+      />
+      <input
+        type="number"
+        placeholder="Expense amount"
+        name="price"
+        onChange={handleChange}
+      />
+      {/* <input
+        type="text"
+        placeholder="Expense cover"
+        name="cover"
+        onChange={handleChange}
+      /> */}
+      <button onClick={handleClick}>Add</button>
+      {error && "Something went wrong!"}
+      <Link to="/">See your all expenses</Link>
+    </div>
+  );
+};
+
   
   const handleDelete = async (id) => {
     try {
