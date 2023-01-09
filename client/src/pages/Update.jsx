@@ -41,17 +41,23 @@ const Update = () => {
         name="title"
         onChange={handleChange}
       />
-      <textarea
+      {/* <textarea
         rows={3}
         type="text"
         placeholder="Expense desc"
         name="desc"
         onChange={handleChange}
-      />
+      /> */}
       <input
         type="number"
         placeholder="Expense amount"
         name="price"
+        onChange={handleChange}
+      />
+      <input
+        type="text"
+        placeholder="Expense description"
+        name="desc"
         onChange={handleChange}
       />
       {/* <input
