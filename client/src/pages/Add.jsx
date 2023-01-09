@@ -10,6 +10,32 @@ const Add = () => {
     price: null,
     cover: "",
   });
+
+
+  useEffect(() => {
+    const fetchAllExpenses = async () => {
+      try {
+        const res = await axios.get("http://localhost:8800/expenses");
+        setExpenses(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchAllExpenses();
+  }, []);
+
+  console.log(expenses);
+
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`http://localhost:8800/expenses/${id}`);
+      window.location.reload()
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+
   const [error,setError] = useState(false)
 
   const navigate = useNavigate();
