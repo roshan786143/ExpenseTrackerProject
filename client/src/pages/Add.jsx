@@ -38,10 +38,16 @@ const Add = () => {
         name="title"
         onChange={handleChange}
       />
-      <textarea
+      {/* <textarea
         rows={5}
         type="text"
         placeholder="Expense desc"
+        name="desc"
+        onChange={handleChange}
+      /> */}
+      <input
+        type="text"
+        placeholder="Expense description :"
         name="desc"
         onChange={handleChange}
       />
